@@ -1,0 +1,60 @@
+\mode<presentation>
+
+% Now Define the margin quantities
+% This will be used for the titles and the itemization
+\newlength { \beamer@unibotesi@margin }
+\setlength \beamer@unibotesi@margin { 0.065 \paperwidth }
+\setbeamersize { text margin left = \beamer@unibotesi@margin }
+\setbeamersize { text margin right = \beamer@unibotesi@margin }
+\setlength \leftmargini {0.6 \beamer@unibotesi@margin }
+\setlength \leftmarginii {0.6 \beamer@unibotesi@margin }
+\setlength \leftmarginiii {0.6 \beamer@unibotesi@margin }
+
+
+
+% now define the titlepage
+% it is formatted as unibo requires
+
+
+\defbeamertemplate*{title page}{unibotesi}[1]{
+
+  \begin{beamercolorbox}[center, wd=.8\paperwidth, ht=.1\paperwidth]{}
+
+    \color{bostonuniversityred}{\usebeamerfont{title}\textbf{\inserttitle}}\par%
+
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \strut \Large \insertsubtitle \strut \par%
+    \fi%
+
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[center, wd=.8\paperwidth, ht=.1\paperwidth]{}
+    \begin{columns}
+
+      \begin{column}{.4\paperwidth}
+        \centering
+        \authorcheck
+        \ifauthor \textbf{Applicant}\par\@author\else \fi\par
+      \end{column}
+
+      \begin{column}{.4\paperwidth}
+        \centering
+        \supervisorcheck
+        \ifsupervisor \textbf{Supervisor}\par\@supervisor\else \fi\par
+
+        \cosupervisorcheck
+        \ifcosupervisor \textbf{Co-Supervisor}\par\@cosupervisor\else \fi\par
+      \end{column}
+
+    \end{columns}
+  \end{beamercolorbox}
+
+  \begin{beamercolorbox}[center, wd=.8\paperwidth, ht=0.05\paperwidth]{}
+    \centering
+    \datecheck
+    \ifdate \par\@date\else \fi
+  \end{beamercolorbox}
+}
+
+\mode<all>

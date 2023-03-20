@@ -1,0 +1,10 @@
+# ignore all compiled files except pdf
+
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.synctex.gz
+*.fdb_latexmk

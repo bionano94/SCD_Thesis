@@ -1,0 +1,48 @@
+\documentclass[]{standalone}
+
+\begin{document}
+	\begin{frame}{Training}{Classifiers, Data Sets, Data Processing}
+	\vspace{-25pt}
+	\begin{columns}
+		\begin{column}{0.33\textwidth}
+		\begin{block}{Classifiers}
+		Three different classifiers were implemented:
+		\begin{itemize}
+			\item Decision Tree;
+			\item Logistic Regression;
+			\item Random Forest.
+		\end{itemize}
+		\end{block}
+		\end{column}
+		
+		\begin{column}{0.33\textwidth}
+		\begin{exampleblock}{Data Sets}
+		The data set was previously divided in:
+		\begin{itemize}
+			\item 51 scans: Training;
+			\item 6 scans: Test.
+		\end{itemize}
+		The division kept in account heterogeneity for:
+		\begin{itemize}
+			\item Center of provenience;
+			\item Scan's resolution;
+			\item Presence of lesions.
+		\end{itemize}
+		\end{exampleblock}
+		\end{column}
+		
+		\begin{column}{0.33\textwidth}
+		\begin{alertblock}{Data Processing}
+		The training data set was highly unbalanced: $3.7\%$ considered true.
+		\begin{itemize}
+			\item SMOTE resampling;
+			\item Random undersampling;
+			\item Robust Features Scaler.
+		\end{itemize}
+		\end{alertblock}
+		\end{column}
+		
+		
+	\end{columns}
+	\end{frame}
+\end{document}

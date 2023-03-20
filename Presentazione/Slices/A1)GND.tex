@@ -1,0 +1,28 @@
+\documentclass[]{standalone}
+
+\begin{document}
+	\begin{frame}{Ground Truth Decision}{Modified Jaccard Score}
+	\vspace{-25pt}
+	\small
+	To decide if a automatically found label is to considered true it was necessary to:
+	\begin{itemize}
+		\item Define an overlapping metric;
+		\item Measure the overlapping of a label with the manually segmented ones;
+		\item Decide a threshold.
+	\end{itemize}
+	
+	\begin{block}{Modified Jaccard Score}
+		\begin{equation*}
+		    score(X) = \frac{|X \cap (Y_1 \cup Y_2 \cup ... \cup Y_n)|}
+		    {|X \cup (Y_1 \cup Y_2 \cup ... \cup Y_n)|}
+		\end{equation*}
+		
+		\tiny
+		\begin{itemize}
+			\item X : automatic segmented label;
+			\item $Y_i$ : overlapping manual label;
+			\item n : number of overlapping manual labels.
+		\end{itemize}
+	\end{block}
+	\end{frame}
+\end{document}

@@ -1,0 +1,29 @@
+\documentclass[]{standalone}
+
+\begin{document}
+	\begin{frame}{Main Pipeline}{U-Net ensemble, Pre-Processing and Post-Processing}
+	\vspace{-20pt}
+
+		
+	The U-Net ensemble needed standardized data for the segmentation and the obtained labels had to be refined.
+	\begin{itemize}
+		\item \textbf{Pre-Processing}:
+			\begin{itemize}
+				\footnotesize
+			 	\item Gaussian Normalization;
+			 	\item Brain Extraction;
+			 	\item Tissue Segmentation;
+		 	\end{itemize}
+		 \item \textbf{SCIs segmentation};
+		 \item \textbf{Post-Processing}:
+		 	\begin{itemize}
+		 		\footnotesize
+			 	\item Removals of the smallest labels;
+			 	\item Features extraction;
+			 	\item Classifiers' training;
+			 	\item Classifiers' test.
+		 	\end{itemize}
+	\end{itemize}
+			
+	\end{frame}
+\end{document}

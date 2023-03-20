@@ -1,0 +1,38 @@
+\documentclass[]{standalone}
+
+\begin{document}
+	\begin{frame}{Brain Extraction}{Atlas registration, Brain normalization and Skull Stripping}
+	
+	\vspace{-25pt}
+		\begin{columns}
+			\begin{column}{0.50\textwidth}
+			\small
+				\begin{itemize}
+				\item \textbf{Atlas Registration:} The MNI 152 atlas was non rigidly registered on the T1-W image;
+				\item \textbf{Normalization:} Using the brain mask of the atlas the image was normalized considering only the masked pixels;
+				\item \textbf{Thresholding:} The normalized image was thresholded;
+				\item \textbf{Find the Largest Connected Component:} The connected components of the images was counted and only the largest one was keeped.
+				\end{itemize}
+			\end{column}
+			\begin{column}{0.55\textwidth}
+			\begin{figure}[h!]
+			\centering
+			\vspace{-6pt}
+				\begin{subfigure}{0.45\textwidth}
+					\centering
+					\includegraphics[scale=0.05]{./IMG/T1.jpg}
+				\end{subfigure}
+				\hfill
+				\begin{subfigure}{0.45\textwidth}
+					\centering
+					\includegraphics[scale=0.05]{./IMG/brain.jpg}
+				\end{subfigure}
+				\begin{subfigure}{0.99\textwidth}
+					\centering
+					\includegraphics[scale=0.1]{./IMG/3Dbrain.jpg}
+				\end{subfigure}
+			\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+\end{document}

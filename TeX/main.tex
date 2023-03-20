@@ -1,0 +1,129 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+
+\usepackage{textcomp}
+\usepackage{newlfont}
+\usepackage{color}
+
+\textwidth=450pt\oddsidemargin=0pt
+
+
+\usepackage{emptypage}
+ % remove header in blank pages
+
+% caption style
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup[figure]{labelfont=bf,textfont=it}
+\captionsetup[table]{labelfont=bf,textfont=it}
+
+% figure numeration
+%\usepackage{chngcntr}
+%\counterwithin{figure}{chapter}
+%\counterwithin{figure}{section}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+
+%useful packages
+\usepackage{amsmath} % mathematics
+\usepackage{amssymb} % mathematics
+\usepackage{graphicx}
+\usepackage[ruled,vlined]{algorithm2e} % pseudocode
+\usepackage{multirow}
+\usepackage{hyperref}
+
+% include file and not recompile it
+\usepackage{standalone}
+\usepackage{dsfont}
+
+
+\usepackage{longtable}
+
+
+
+
+\usepackage{listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+
+\lstdefinestyle{python}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{blue}\ttfamily,
+	keywordstyle=\color{green}\ttfamily,
+	numberstyle=\tiny\color{magenta},
+	stringstyle=\color{red}\ttfamily,
+	basicstyle=\ttfamily\footnotesize,
+	morecomment=[l][\color{magenta}]{\#}
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=t,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
+
+%bibliografia
+\usepackage[backend=biber,style=numeric,autocite=plain,sorting=none]{biblatex}
+\usepackage[nottoc,numbib]{tocbibind}
+% include file and not recompile it
+
+
+
+\addbibresource{bibliography.bib}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+
+\begin{document}
+
+
+\input{TitlePage.tex}
+\thispagestyle{empty}
+\pagenumbering{gobble}
+
+\input{Abstract}
+
+
+\pagenumbering{gobble}
+\tableofcontents
+
+\thispagestyle{empty}
+\pagenumbering{arabic}
+
+\input{Introduction.tex}
+\input{Chapter1.tex}
+\input{Chapter2.tex}
+\input{Chapter3.tex}
+
+\input{Conclusions}
+
+%APPENDICI
+\appendix
+
+\input{Appendix_Dice_F1}
+
+\input{Acknowledgements}
+
+\newpage
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
+\markboth{Bibliography}{Bibliography}
+
+
+
+
+\end{document}

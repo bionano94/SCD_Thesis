@@ -1,0 +1,38 @@
+\documentclass[]{standalone}
+
+\begin{document}
+	\begin{frame}{Results}{\textbf{Post}-Processing}
+	\vspace{-28pt}
+	\begin{block}{Classifiers Performances}
+	\begin{table}[h!]
+		\centering
+		\setlength{\tabcolsep}{2pt}
+		\small
+		\begin{tabular}{c|ccccc}
+		 & \textbf{Bal. Acc.} & \textbf{AUC ROC} & \textbf{AUC PR} & \textbf{Precision} & \textbf{Recall} \\ \hline
+		\textbf{Decision Tree}       & 0.74 & 0.81 & 0.45 & 0.38 & 0.96 \\
+		\textbf{Logistic regression} & 0.68 & 0.83 & 0.61 & 0.32 & 0.96 \\
+		\textbf{Random Forest}       & \textbf{0.74} & \textbf{0.90} & \textbf{0.74} & \textbf{0.38} & \textbf{0.97}
+		\end{tabular}
+	\end{table}
+	\end{block}
+	
+	\begin{exampleblock}{Features' Importance}
+	\begin{table}[h!]
+		\centering
+		\footnotesize
+		\setlength\tabcolsep{2pt}
+		\begin{tabular}{c|ccccccc}
+				& \textbf{Prob.}     & \textbf{Size}        & \textbf{Boundary}     & \textbf{Exclusion} & \textbf{WM}       & \textbf{GM}        & \textbf{CSF}       \\ \hline
+		\textbf{Dec. Tree} & 0.000 & 0.0133 & 0.032 & 0.034 & 0.659 & 0.042 & 0.098 \\
+		\textbf{Log. reg.} & 0.00 & $0.0883$ & 0.236 & -1.50 & $1.07 \times 10^5 $ & $4.58 \times 10^4$ & $7.82 \times 10^3$ \\
+		\textbf{Rnd F.} & $0.000$ & $0.146$ & $0.027$ & $0.029$  & $0.615$ & $0.067$ & $0.116$
+		\end{tabular}
+		\end{table}
+
+
+	\vspace{-10pt}
+	\end{exampleblock}
+
+	\end{frame}
+\end{document}

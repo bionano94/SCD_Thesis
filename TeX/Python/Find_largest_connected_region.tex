@@ -1,0 +1,36 @@
+
+\documentclass{standalone}
+
+\begin{document}
+
+
+
+
+\lstset{style=python}
+	\begin{lstlisting}[language=python, caption = Largest Connected Region Finder, label=find_largest_region]
+import itk	
+	
+def find_largest_connected_region (image):
+
+    #searching for connected regions in the images
+    connected_filter = itk.ConnectedComponentImageFilter[OutputType, OutputType].New()
+    connected_filter.SetInput(cast_filter.GetOutput())
+    connected_filter.Update()
+    
+    #relabeling the images in increasing order for decreasing dimension
+    label_filter = itk.RelabelComponentImageFilter[OutputType, OutputType].New()
+    label_filter.SetInput(connected_filter.GetOutput())
+    label_filter.Update()
+    
+    #tengo solo la regione connessa più grande
+    thresholdFilter = itk.ThresholdImageFilter[OutputType].New()
+    thresholdFilter.SetInput(label_filter.GetOutput())
+    thresholdFilter.ThresholdOutside (1,1)
+    thresholdFilter.SetOutsideValue(0)
+    thresholdFilter.Update()
+    
+    return thresholdFilter.GetOutput()
+
+\end{lstlisting}
+
+\end{document}

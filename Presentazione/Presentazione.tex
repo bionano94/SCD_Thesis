@@ -1,0 +1,80 @@
+\documentclass[slidescentered]{beamer}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{standalone}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{appendixnumberbeamer}
+
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+%block
+\setbeamercolor{block title}{fg=white, bg=purple}
+\setbeamercolor{block body}{bg=purple!20}
+\setbeamercolor{block title alerted}{fg=white, bg=orange}
+\setbeamercolor{block body alerted}{bg=orange!20}
+\setbeamercolor{block title example}{fg=white, bg=blue}
+\setbeamercolor{block body example}{bg=blue!20}
+
+\usetheme{UniboTesi}
+
+\title[]{ \Large Development of pre and post-processing
+steps to a pipeline aimed to identify silent
+cerebral infarcts}
+\supervisor{Prof. G. Castellani}
+
+\cosupervisor{Prof. D. Remondini \\ Dr. R. Biondi}
+\author{Nicolas Biondini}
+\date{31/03/2023}
+\department{Physics and Astronomy}
+\school{Science}
+\degree{Master Degree in Physics}
+
+\begin{document}
+
+	\begin{frame}[noframenumbering]
+		\titlepage
+	\end{frame}
+	
+	\input{./Slices/1)SCI.tex}
+	
+	\input{./Slices/2_a)Why.tex}
+	
+	\input{./Slices/2_b)How.tex}
+	
+	\input{./Slices/3_a)Dataset.tex}
+	
+	\input{./Slices/3_b)Full_Pipeline.tex}
+	
+	\input{./Slices/4)Pre-Processing.tex}
+	
+	\input{./Slices/5)Brain_extraction.tex}
+	
+	\input{./Slices/6)Segmentation.tex}
+	
+	\input{./Slices/7)Post-Processing.tex}
+	
+	\input{./Slices/8_a)Features.tex}
+	
+	\input{./Slices/8_b)Classifiers.tex}
+	
+	\input{./Slices/9_a)Pre_Results.tex}
+	
+	\input{./Slices/9_b)Pre_Outliers.tex}
+	
+	\input{./Slices/10)Post_Results.tex}
+	
+	\input{./Slices/11)Conclusions.tex}
+	
+	
+	%%%%%%%%%%% APPENDICI
+	\appendix
+
+	
+	\input{./Slices/A1)GND.tex}
+	
+
+\end{document}

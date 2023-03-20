@@ -1,0 +1,88 @@
+\documentclass{standalone}
+
+\begin{document}
+
+
+
+
+\lstset{style=python}
+	\begin{lstlisting}[language=python, caption = Parameters Estimation, label=parameters]
+import itk
+import numpy as np
+
+def find_prob_weights (wm_mask, gm_mask, csf_mask):
+    
+    #Getting arrays from masks
+    wm_array = itk.GetArrayFromImage(wm_mask)
+    gm_array = itk.GetArrayFromImage(gm_mask)
+    csf_array = itk.GetArrayFromImage(csf_mask)
+    
+    tot_array = wm_array + gm_array + csf_array
+    
+    four_dim_array = [wm_array, gm_array, csf_array]
+    
+    #finding for every pixel which is its most probable type
+    prob_array = np.argmax(four_dim_array, 0)
+    
+    #finding number of pixels for gm and csf
+    gm_pixels = np.count_nonzero(prob_array == 1)
+    csf_pixels = np.count_nonzero(prob_array == 2)
+    
+    #finding the total number of pixels
+    tot_pixel = np.count_nonzero( tot_array )
+    
+    if tot_pixel == 0 :
+        #In this case the masks are empty images.
+        return [0,0,0]
+
+    wm_pixels = tot_pixel - gm_pixels - csf_pixels
+    
+    #finding weights for the masks
+    wm_weight = wm_pixels/tot_pixel
+    gm_weight = gm_pixels/tot_pixel
+    csf_weight = csf_pixels/tot_pixel
+    
+    #creating a list with all the weights.
+    weights = [wm_weight, gm_weight, csf_weight]
+    
+    return weights
+
+
+
+def find_means (brain, brain_mask, csf_mask, gm_mask, wm_mask):
+ 
+    #converting everything in numpy array. This is done because ITK functions in python are not always wrapped for every type. 
+    brain_array = itk.GetArrayFromImage(brain) 
+    wm_array = itk.GetArrayFromImage(wm_mask)
+    gm_array = itk.GetArrayFromImage(gm_mask)
+    csf_array = itk.GetArrayFromImage(csf_mask)
+    brain_mask_array = itk.GetArrayFromImage(brain_mask)
+
+    #setting a greater value for bg in order to have it correctly selected in prob array
+    background = np.where(brain_mask_array == 0, 2, 0)
+    
+    #finding for each pixel what is its more probable class (bg = 0, wm = 3, gm = 2, csf = 1) 
+    four_dim_array = [background, csf_array, gm_array, wm_array]
+    prob_array = np.argmax(four_dim_array, 0)
+    
+    #recreating the pixels array
+    wm_array = np.where(prob_array == 3, 1, 0)
+    gm_array = np.where(prob_array == 2, 1, 0)
+    csf_array = np.where(prob_array == 1, 1, 0)
+
+    #creating arrays in which there are only pixels of the brain where those pixels are of that class
+    wm_brain = np.where (wm_array == 1, brain_array, 0)
+    gm_brain = np.where (gm_array == 1, brain_array, 0)
+    csf_brain = np.where (csf_array == 1, brain_array, 0)
+    
+    #find means
+    wm_mean = np.sum(wm_brain)/np.count_nonzero(wm_array)
+    gm_mean = np.sum(gm_brain)/np.count_nonzero(gm_array)
+    csf_mean = np.sum(csf_brain)/np.count_nonzero(csf_array)
+    
+    means = [csf_mean, gm_mean, wm_mean]
+        
+    return means
+\end{lstlisting}
+
+\end{document}

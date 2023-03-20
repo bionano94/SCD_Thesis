@@ -1,0 +1,69 @@
+\documentclass{standalone}
+
+
+
+
+\begin{document}
+
+
+
+
+\lstset{style=python}
+	\begin{lstlisting}[language = python, caption = Modified Jaccard Index, label =modified_jaccard]
+import itk
+import numoy as np
+
+def find_Jaccard_truth_value (counted_label, gnd_label, threshold = 0.25):
+    
+    #FINDING NUMBER OF LABELS
+    maximum_filter = itk.MinimumMaximumImageCalculator[type(counted_label)].New()
+    maximum_filter.SetImage(counted_label)
+    maximum_filter.ComputeMaximum()
+    num_labels = maximum_filter.GetMaximum()
+    
+    count_labels = np.array([0] * num_labels) #total number of pixels for lesion
+    value_array = np.array( [False] * num_labels ) #array that reports what label is true
+    
+    #FINDING NUMBER OF GND TRUTH LABELS    
+    counted_gnd = find_connected_regions(gnd_label)
+    maximum_filter = itk.MinimumMaximumImageCalculator[type(counted_gnd)].New()
+    maximum_filter.SetImage(counted_gnd)
+    maximum_filter.ComputeMaximum()
+    num_gnd = maximum_filter.GetMaximum()
+    
+    count_gnd = np.array( [0] * num_gnd ) #total number of pixels for lesion
+    
+    overlapping_matrix = np.array( [[0]*num_gnd]*num_labels)
+    jaccard_index = np.array([0.]*num_labels)
+    index = itk.Index[3]()
+
+    for index[0] in range( counted_label.GetLargestPossibleRegion().GetSize()[0] ):
+            for index[1] in range( counted_label.GetLargestPossibleRegion().GetSize()[1] ):
+                for index[2] in range( counted_label.GetLargestPossibleRegion().GetSize()[2] ):
+                    if counted_gnd.GetPixel(index) != 0 :
+                        count_gnd[ counted_gnd.GetPixel(index)-1] +=1
+                    if counted_label.GetPixel(index) != 0 :
+                        count_labels[ counted_label.GetPixel(index)-1] +=1
+                        if counted_gnd.GetPixel(index) != 0 :
+                            overlapping_matrix[counted_label.GetPixel(index) - 1][counted_gnd.GetPixel(index)-1] += 1
+                            
+    num = np.array([0]*num_labels)
+    den = np.array([0]*num_labels)
+    
+    for i in range(num_labels):
+        for j in range(num_gnd):
+            num[i] += overlapping_matrix[i][j]
+            if overlapping_matrix[i][j]!= 0 : den[i] += count_gnd[j]
+        den[i] += count_labels[i] - num[i]
+        
+        jaccard_index[i] = num[i]/den[i]
+        
+        value_array[i] = (jaccard_index[i] >= threshold)
+        
+    return value_array, jaccard_index
+
+
+\end{lstlisting}
+
+
+\end{document}

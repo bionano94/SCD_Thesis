@@ -1,0 +1,62 @@
+\documentclass{standalone}
+
+\begin{document}
+
+
+
+
+\lstset{style=python}
+	\begin{lstlisting}[language=python, caption = Feature Extracion, label=feature_extraction]
+import itk
+import numpy as np
+from sklearn.preprocessing import RobustScaler
+
+def feature_scoring (label_img, masks_list):
+    #binarize the labels
+    bin_label = binarize (label_img, 0.5)
+    
+    #differentiating the labels
+    counted_label = find_connected_regions (bin_label)
+    #Calculating the volume of a voxel
+    voxel_volume = label_img.GetSpacing()[0] * label_img.GetSpacing()[1] * label_img.GetSpacing()[2] 
+    
+    #FINDING NUMBER OF LABELS
+    maximum_filter = itk.MinimumMaximumImageCalculator[type(counted_label)].New()
+    maximum_filter.SetImage(counted_label)
+    maximum_filter.ComputeMaximum()
+
+    index = itk.Index[3]()
+    pounded_score = np.array( [[0.] * (len(masks_list) + 2)] * maximum_filter.GetMaximum() ) #score for lesions divided pixels per lesion
+    score = np.array( [[0.] * (len(masks_list) + 2)] * maximum_filter.GetMaximum() ) #total scores for each lesion
+    count = np.array( [0.] * maximum_filter.GetMaximum() ) #total number of pixels for lesion
+    
+    for index[0] in range( label_img.GetLargestPossibleRegion().GetSize()[0] ):
+        for index[1] in range( label_img.GetLargestPossibleRegion().GetSize()[1] ):
+            for index[2] in range( label_img.GetLargestPossibleRegion().GetSize()[2] ):
+                if label_img.GetPixel(index) != 0 :
+                    count[counted_label.GetPixel(index) - 1] += 1
+                    score[counted_label.GetPixel(index) - 1][0] += label_img.GetPixel(index)
+                    for i in range(len(masks_list)):
+                        score[counted_label.GetPixel(index) - 1][i + 2] += masks_list[i].GetPixel(index)
+              
+    for i in range(len(score)):
+        pounded_score[i][0] = score[i][0] / count[i]
+        pounded_score[i][1] = voxel_volume * count[i]
+        
+        #everything in the mask must be averaged
+        for j in range( 2, len(score[i]) ):
+            pounded_score[i][j] = score[i][j] / count[i]
+    
+    return pounded_score, counted_label
+    
+def robust_scaling(data, transformer = None):
+
+    if transformer == None:
+        transformer = RobustScaler().fit(data)
+        
+        new_data = transformer.transform(data)
+    return new_data, transformer
+    \end{lstlisting}
+
+
+\end{document}
