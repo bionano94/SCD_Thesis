@@ -5,40 +5,39 @@
 	
 	\vspace{-25pt}
 		\begin{columns}
-			\begin{column}{0.60\textwidth}
-			\small
+			\begin{column}{0.4\textwidth}
 				\begin{itemize}
-				\item \textbf{Find Tissues Mean Values and Weights:} Starting from the atlas' partial volume maps compute the mean pixel value and the the fraction of pixels belonging to each tissue;
-				\item \textbf{Define a Gaussian Mixture Model:} A mixture of three Gaussian distributions is defined starting from the parameters found;
-				\item \textbf{Expectation Maximization:} An expectation maximization algorithm finds the best parameters of the Gaussian mixture model;
-				\item \textbf{Classification:} Each pixel is classified.
+				\item Find Tissues Mean Values and Weights;
+				\item Define a Gaussian Mixture Model;
+				\item Expectation Maximization;
+				\item Classification.
 				\end{itemize}
 			\end{column}
-			\begin{column}{0.40\textwidth}
+			\begin{column}{0.7\textwidth}
 			\begin{figure}[h!]
 			\centering
-			\vspace{-6pt}
+			%\vspace{-6pt}
 
-				\begin{subfigure}{0.4\textwidth}
-					\centering
-					\includegraphics[scale=0.05]{./IMG/T1.jpg}
+				\begin{subfigure}{0.45\textwidth}
+					
+					\includegraphics[scale=0.055]{./IMG/T1.jpg}
 				\end{subfigure}
-				\hspace{10pt}
-				\begin{subfigure}{0.4\textwidth}
-					\centering
-					\includegraphics[scale=0.05]{./IMG/segmented_axial.jpg}
+				\hspace{15pt}
+				\begin{subfigure}{0.45\textwidth}
+					
+					\includegraphics[scale=0.055]{./IMG/segmented_axial.jpg}
 				\end{subfigure}
-
-				\begin{subfigure}{0.4\textwidth}
-					\centering
-					\includegraphics[scale=0.102]{./IMG/segmented_frontal.png}
+				\hfill
+				\begin{subfigure}{0.45\textwidth}
+					
+					\includegraphics[scale=0.112]{./IMG/segmented_frontal.png}
 				\end{subfigure}
-				\hspace{10pt}
-				\begin{subfigure}{0.4\textwidth}
-					\centering
-					\includegraphics[scale=0.102]{./IMG/segmented_lateral.png}
+				\hspace{15pt}
+				\begin{subfigure}{0.45\textwidth}
+					
+					\includegraphics[scale=0.112]{./IMG/segmented_lateral.png}
 				\end{subfigure}
-				\hspace{10pt}
+				\hfill
 			\end{figure}
 			\end{column}
 		\end{columns}

@@ -9,8 +9,12 @@
 		\begin{itemize}
 	
 		\item Comparison with masks obtained with FSL;
-		\item Computed metric: Dice Similarity Coefficient;
+		\item Computed metric: Dice Similarity Coefficient (DSC).
 	\end{itemize}
+	
+		\begin{equation*}
+			    DSC = 2\frac{|X \cap Y |}{|X| + |Y|}
+		\end{equation*}
 		\end{column}
 		
 		\begin{column}{0.65\textwidth}
@@ -45,7 +49,7 @@
 				\hfill
 				\begin{subfigure}{0.3\textwidth}
 					\includegraphics[scale=0.11]{./IMG/SEG48.png}
-					\caption*{\tiny Pipeline}
+					\caption*{\tiny Proposed}
 				\end{subfigure}
 			\end{figure}
 		\end{column}

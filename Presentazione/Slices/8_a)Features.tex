@@ -5,18 +5,18 @@
 	
 	
 		\begin{columns}
-			\begin{column}{0.50\textwidth}
-			\footnotesize
+			\begin{column}{0.45\textwidth}
+			\small
 			Seven different features were extracted for each segmented lesion:
 				\begin{itemize}
-				\item \textbf{Lesion probability:} The probability in output from the U-Net ensemble;
-				\item \textbf{Label's volume:} The total volume of the label;
-				\item \textbf{Overlapping with boundary region mask:} A region where is more probable to find SCIs;
-				\item \textbf{Overlapping with exclusion region mask:} A region that can easily give false positives;
-				\item \textbf{Probability to belong to each tissue:} The probability for a mask to belong to each tissue using the segmentation obtained in pre-processing step.
+				\item Lesion probability;
+				\item Label's volume;
+				\item Overlapping with boundary region mask;
+				\item Overlapping with exclusion region mask;
+				\item Probability to belong to each tissue.
 				\end{itemize}
 			\end{column}
-			\begin{column}{0.50\textwidth}
+			\begin{column}{0.60\textwidth}
 			
 			\begin{alertblock}{}
 				The boundary and exclusion masks manually segmented on the MNI 152 atlas by expert clinicians.
