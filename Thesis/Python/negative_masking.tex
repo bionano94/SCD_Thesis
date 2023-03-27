@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\begin{document}
+
+
+
+
+\lstset{style=python}
+	\begin{lstlisting}[language=python, caption = Masking Function, label=negative_masking]
+import itk
+
+def negative_3d_masking (image, mask):
+    
+    Dimension = 3
+    ImageType = itk.template(image)[1]
+    masked_image = itk.Image[ImageType].New()
+    
+    masked_image.SetRegions( image.GetLargestPossibleRegion() )
+    masked_image.SetSpacing( image.GetSpacing() )
+    masked_image.SetOrigin( image.GetOrigin() )
+    masked_image.SetDirection( image.GetDirection() )
+    masked_image.Allocate()
+    
+    index = itk.Index[Dimension]()
+    
+    for index[0] in range( mask.GetLargestPossibleRegion().GetSize()[0] ):
+        for index[1] in range( mask.GetLargestPossibleRegion().GetSize()[1] ):
+            for index[2] in range( mask.GetLargestPossibleRegion().GetSize()[2] ):
+                if mask.GetPixel(index) < 1e-01:
+                    masked_image.SetPixel(index, 0)
+                else: 
+                    masked_image.SetPixel(index, image.GetPixel(index))
+    
+    return masked_image
+
+
+\end{lstlisting}
+
+\end{document}
