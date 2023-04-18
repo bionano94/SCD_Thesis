@@ -2,7 +2,7 @@
 Repository with my Second Cycle Degree Thesis in Applied Physics
 | **Author**  | **Project** |  **Supervisor** | **Co-Supervisor** |
 |:------------:|:-----------:|:-----------------:|:-----------:|
-| [**N. Biondini**](https://github.com/bionano94) | **SCD_Thesis** <br!> [**Neuroradiomics**](https://github.com/bionano94/Neuroradiomics)| [**Prof. G. Castellani**](https://www.unibo.it/sitoweb/gastone.castellani) |[**Dr. R. Biondi**](https://github.com/RiccardoBiondi) |
+| [**N. Biondini**](https://github.com/bionano94) | **SCD_Thesis** <br/> [**Neuroradiomics**](https://github.com/bionano94/Neuroradiomics)| [**Prof. G. Castellani**](https://www.unibo.it/sitoweb/gastone.castellani) |[**Dr. R. Biondi**](https://github.com/RiccardoBiondi) |
 
 
 # SCD Thesis
